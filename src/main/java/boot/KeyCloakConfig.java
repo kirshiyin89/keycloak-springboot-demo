@@ -1,4 +1,4 @@
-/*
+
 package boot;
 
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
@@ -22,6 +22,17 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
 class KeyCloakConfig extends KeycloakWebSecurityConfigurerAdapter {
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        super.configure(http);
+        http.authorizeRequests()
+                .antMatchers("/visitor").hasRole("visitor")
+                .antMatchers("/admin").hasRole("admin")
+                .anyRequest()
+                .permitAll();
+        http.csrf().disable();
+    }
+
     @Autowired
     public void configureGlobal(
             AuthenticationManagerBuilder auth) throws Exception {
@@ -44,16 +55,4 @@ class KeyCloakConfig extends KeycloakWebSecurityConfigurerAdapter {
         return new RegisterSessionAuthenticationStrategy(
                 new SessionRegistryImpl());
     }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
-        http.authorizeRequests()
-                .antMatchers("/visitor").hasAnyRole("visitor", "admin")
-                .antMatchers("/admin").hasRole("admin")
-                .anyRequest()
-                .permitAll();
-        http.csrf().disable();
-    }
 }
-*/
