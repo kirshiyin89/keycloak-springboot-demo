@@ -9,6 +9,12 @@ buildscript {
     }
 }
 
+plugins {
+    id 'org.springframework.boot' version '2.3.3.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
 allprojects {
     apply plugin: "com.jfrog.artifactory"
 }
@@ -33,12 +39,6 @@ artifactory {
             
         }
     }
-}
-
-plugins {
-    id 'org.springframework.boot' version '2.3.3.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-    id 'java'
 }
 
 group = 'com.keycloakdemo'
