@@ -26,6 +26,9 @@ artifactory {
             maven = true
             
         }
+                defaults {
+            publications ('mavenJava')
+        }
     }
     resolve {
         repository {
@@ -56,4 +59,12 @@ dependencyManagement {
 }
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact file("build/*.jar")
+        }
+    }
 }
