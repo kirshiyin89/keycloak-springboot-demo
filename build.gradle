@@ -60,11 +60,3 @@ dependencyManagement {
 test {
     useJUnitPlatform()
 }
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact file("build/*.jar")
-        }
-    }
-}
