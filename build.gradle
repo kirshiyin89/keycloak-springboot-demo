@@ -65,7 +65,7 @@ test {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifact file("build/*.jar")
+            artifact file("build/libs/${rootProject.name}-${version}.jar")
         }
     }
 }
